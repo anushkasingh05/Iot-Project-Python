@@ -1,0 +1,47 @@
+
+HVAC System Maintenance Manual
+Version 2.1
+Last Updated: 2024-01-15
+
+1. DAILY CHECKS
+   - Monitor temperature readings
+   - Check humidity levels
+   - Verify system status indicators
+   - Review energy consumption
+
+2. WEEKLY MAINTENANCE
+   - Clean air filters
+   - Check thermostat calibration
+   - Inspect ductwork for leaks
+   - Monitor refrigerant levels
+
+3. MONTHLY MAINTENANCE
+   - Clean evaporator and condenser coils
+   - Lubricate motors and bearings
+   - Check electrical connections
+   - Test emergency shutdown procedures
+
+4. QUARTERLY MAINTENANCE
+   - Comprehensive system inspection
+   - Performance testing and optimization
+   - Update maintenance records
+   - Review energy efficiency metrics
+
+5. ANNUAL MAINTENANCE
+   - Complete system overhaul
+   - Replace worn components
+   - Update control software
+   - Energy audit and optimization
+
+TROUBLESHOOTING GUIDE:
+- High energy consumption: Check filters and coils
+- Uneven cooling: Verify duct balance and thermostat
+- Unusual noises: Inspect motors and bearings
+- System failure: Check electrical connections and fuses
+
+EMERGENCY PROCEDURES:
+- System shutdown: Use emergency stop button
+- Fire alarm: Follow building evacuation procedures
+- Power failure: Activate backup systems
+- Gas leak: Evacuate and contact emergency services
+            

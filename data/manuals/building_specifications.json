@@ -1,0 +1,59 @@
+{
+  "building_name": "Smart Office Building",
+  "total_floors": 5,
+  "total_area_sqft": 50000,
+  "construction_year": 2020,
+  "systems": {
+    "hvac": {
+      "units": 3,
+      "type": "Variable Air Volume",
+      "capacity": "150 tons",
+      "efficiency": "SEER 16"
+    },
+    "lighting": {
+      "fixtures": 500,
+      "type": "LED with smart controls",
+      "efficiency": "120 lumens/watt",
+      "controls": "Motion sensors and daylight harvesting"
+    },
+    "security": {
+      "cameras": 25,
+      "access_points": 8,
+      "alarm_zones": 12,
+      "backup_power": "UPS and generator"
+    },
+    "electrical": {
+      "main_service": "400A",
+      "backup_generator": "200kW",
+      "subpanels": 15,
+      "emergency_power": "Life safety systems"
+    },
+    "plumbing": {
+      "fixtures": 50,
+      "water_conservation": "Low-flow fixtures",
+      "backflow_prevention": "All fixtures"
+    }
+  },
+  "maintenance_schedule": {
+    "daily": [
+      "System monitoring",
+      "Status checks"
+    ],
+    "weekly": [
+      "Filter changes",
+      "Sensor testing"
+    ],
+    "monthly": [
+      "Performance testing",
+      "Software updates"
+    ],
+    "quarterly": [
+      "Comprehensive inspection",
+      "Energy audit"
+    ],
+    "annually": [
+      "System overhaul",
+      "Major upgrades"
+    ]
+  }
+}

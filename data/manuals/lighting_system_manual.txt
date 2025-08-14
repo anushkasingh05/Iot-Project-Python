@@ -1,0 +1,47 @@
+
+Lighting System Operation Manual
+Version 1.5
+Last Updated: 2024-01-10
+
+1. SYSTEM OVERVIEW
+   - LED fixtures with smart controls
+   - Motion sensors for occupancy detection
+   - Daylight harvesting capabilities
+   - Emergency lighting backup
+
+2. DAILY OPERATIONS
+   - Check system status indicators
+   - Monitor energy consumption
+   - Verify sensor functionality
+   - Review occupancy patterns
+
+3. WEEKLY MAINTENANCE
+   - Clean LED fixtures
+   - Test motion sensors
+   - Check emergency lighting
+   - Update lighting schedules
+
+4. MONTHLY MAINTENANCE
+   - Calibrate daylight sensors
+   - Inspect electrical connections
+   - Test dimming functionality
+   - Review energy efficiency
+
+5. QUARTERLY MAINTENANCE
+   - Comprehensive system testing
+   - Update control software
+   - Performance optimization
+   - Energy audit
+
+ENERGY SAVING TIPS:
+- Use daylight harvesting when possible
+- Implement occupancy-based control
+- Optimize lighting schedules
+- Regular maintenance for peak efficiency
+
+TROUBLESHOOTING:
+- Flickering lights: Check electrical connections
+- Sensor not working: Clean and recalibrate
+- High energy usage: Review schedules and settings
+- Emergency light failure: Check battery backup
+            
