@@ -9,6 +9,8 @@ import os
 from dotenv import load_dotenv
 
 # Import custom modules
+# Note: Ensure you have the 'src' folder with these files inside it.
+# If you don't have the 'src' folder, the app will show an error.
 from src.data_ingestion import SensorDataIngestion
 from src.rag_engine import RAGEngine
 from src.predictive_maintenance import PredictiveMaintenance
@@ -91,7 +93,8 @@ class SmartBuildingRAG:
             self.energy_optimization = EnergyOptimization()
         except Exception as e:
             st.error(f"Error initializing components: {str(e)}")
-    
+            st.warning("Please ensure you have a 'src' folder with all the required Python modules.")
+
     def setup_data(self):
         """Setup sample data if not exists"""
         if not os.path.exists("data"):
@@ -178,14 +181,14 @@ class SmartBuildingRAG:
                 st.subheader("Temperature Sensors")
                 temp_data = sensor_data[sensor_data['sensor_type'] == 'temperature']
                 fig_temp = px.line(temp_data, x='timestamp', y='value', 
-                                 color='location', title='Temperature Trends')
+                                   color='location', title='Temperature Trends')
                 st.plotly_chart(fig_temp, use_container_width=True)
             
             with col2:
                 st.subheader("Humidity Sensors")
                 humidity_data = sensor_data[sensor_data['sensor_type'] == 'humidity']
                 fig_humidity = px.line(humidity_data, x='timestamp', y='value', 
-                                     color='location', title='Humidity Trends')
+                                       color='location', title='Humidity Trends')
                 st.plotly_chart(fig_humidity, use_container_width=True)
             
             # HVAC and Lighting
@@ -195,14 +198,14 @@ class SmartBuildingRAG:
                 st.subheader("HVAC System Status")
                 hvac_data = sensor_data[sensor_data['sensor_type'] == 'hvac']
                 fig_hvac = px.bar(hvac_data, x='location', y='value', 
-                                color='status', title='HVAC Performance')
+                                  color='status', title='HVAC Performance')
                 st.plotly_chart(fig_hvac, use_container_width=True)
             
             with col4:
                 st.subheader("Lighting System")
                 lighting_data = sensor_data[sensor_data['sensor_type'] == 'lighting']
                 fig_lighting = px.pie(lighting_data, values='value', names='location', 
-                                    title='Lighting Usage Distribution')
+                                      title='Lighting Usage Distribution')
                 st.plotly_chart(fig_lighting, use_container_width=True)
             
             # System health overview
@@ -210,7 +213,6 @@ class SmartBuildingRAG:
             health_data = self.sensor_ingestion.get_system_health()
             
             if health_data is not None:
-                # Create radar chart using go.Figure instead of px.radar
                 fig_health = go.Figure()
                 
                 fig_health.add_trace(go.Scatterpolar(
@@ -242,7 +244,7 @@ class SmartBuildingRAG:
         with col1:
             query = st.text_input(
                 "Search maintenance manuals, troubleshooting guides, or building specifications:",
-                placeholder="e.g., How to troubleshoot HVAC system? What are the maintenance procedures for lighting system?"
+                placeholder="e.g., How to troubleshoot HVAC system?"
             )
         
         with col2:
@@ -266,7 +268,6 @@ class SmartBuildingRAG:
                                 st.write("**Content:**")
                                 st.write(result['content'])
                                 
-                                # AI-generated insights
                                 if st.button(f"🤖 Get AI Insights for Result {i+1}"):
                                     insights = self.rag_engine.generate_insights(query, result['content'])
                                     st.info("**AI Insights:**")
@@ -274,7 +275,6 @@ class SmartBuildingRAG:
                     else:
                         st.warning("No relevant documents found. Try different keywords.")
         
-        # Quick access to common queries
         st.subheader("Quick Access")
         col1, col2, col3 = st.columns(3)
         
@@ -304,17 +304,15 @@ class SmartBuildingRAG:
         """Predictive maintenance dashboard"""
         st.header("🔮 Predictive Maintenance")
         
-        # Get predictions
         predictions = self.predictive_maintenance.get_predictions()
         
         if predictions is not None:
-            # Equipment failure predictions
             col1, col2 = st.columns(2)
             
             with col1:
                 st.subheader("Equipment Failure Predictions")
                 fig_predictions = px.bar(predictions, x='equipment', y='failure_probability', 
-                                       color='risk_level', title='Failure Risk Assessment')
+                                         color='risk_level', title='Failure Risk Assessment')
                 st.plotly_chart(fig_predictions, use_container_width=True)
             
             with col2:
@@ -323,7 +321,6 @@ class SmartBuildingRAG:
                 if schedule is not None:
                     st.dataframe(schedule, use_container_width=True)
             
-            # Cost analysis
             st.subheader("Maintenance Cost Analysis")
             cost_data = self.predictive_maintenance.get_cost_analysis()
             
@@ -332,30 +329,27 @@ class SmartBuildingRAG:
                 
                 with col3:
                     fig_cost = px.pie(cost_data, values='cost', names='category', 
-                                    title='Maintenance Cost Distribution')
+                                      title='Maintenance Cost Distribution')
                     st.plotly_chart(fig_cost, use_container_width=True)
                 
                 with col4:
-                    # Create a simple bar chart for cost categories instead of line chart
                     fig_trend = px.bar(cost_data, x='category', y='cost', 
-                                     title='Maintenance Cost by Category')
+                                       title='Maintenance Cost by Category')
                     st.plotly_chart(fig_trend, use_container_width=True)
     
     def energy_optimization_tab(self):
         """Energy optimization dashboard"""
         st.header("⚡ Energy Optimization")
         
-        # Get energy data
         energy_data = self.energy_optimization.get_energy_data()
         
         if energy_data is not None:
-            # Energy consumption
             col1, col2 = st.columns(2)
             
             with col1:
                 st.subheader("Energy Consumption by System")
                 fig_consumption = px.bar(energy_data, x='system', y='consumption', 
-                                       color='efficiency', title='Energy Consumption Analysis')
+                                         color='efficiency', title='Energy Consumption Analysis')
                 st.plotly_chart(fig_consumption, use_container_width=True)
             
             with col2:
@@ -363,10 +357,9 @@ class SmartBuildingRAG:
                 efficiency_data = self.energy_optimization.get_efficiency_trends()
                 if efficiency_data is not None:
                     fig_efficiency = px.line(efficiency_data, x='date', y='efficiency', 
-                                           color='system', title='System Efficiency Trends')
+                                             color='system', title='System Efficiency Trends')
                     st.plotly_chart(fig_efficiency, use_container_width=True)
             
-            # Optimization recommendations
             st.subheader("AI Optimization Recommendations")
             recommendations = self.energy_optimization.get_recommendations()
             
@@ -381,17 +374,15 @@ class SmartBuildingRAG:
         """Anomaly detection dashboard"""
         st.header("🚨 Anomaly Detection")
         
-        # Get anomalies
         anomalies = self.anomaly_detection.get_current_anomalies()
         
         if anomalies is not None and not anomalies.empty:
-            # Anomaly overview
             col1, col2 = st.columns(2)
             
             with col1:
                 st.subheader("Active Anomalies")
                 fig_anomalies = px.bar(anomalies, x='severity', y='count', 
-                                     color='system', title='Anomaly Distribution by Severity')
+                                       color='system', title='Anomaly Distribution by Severity')
                 st.plotly_chart(fig_anomalies, use_container_width=True)
             
             with col2:
@@ -399,15 +390,14 @@ class SmartBuildingRAG:
                 timeline_data = self.anomaly_detection.get_anomaly_timeline()
                 if timeline_data is not None:
                     fig_timeline = px.scatter(timeline_data, x='timestamp', y='severity', 
-                                            color='system', size='impact', 
-                                            title='Anomaly Timeline')
+                                              color='system', size='impact', 
+                                              title='Anomaly Timeline')
                     st.plotly_chart(fig_timeline, use_container_width=True)
             
-            # Alert management
             st.subheader("Alert Management")
             for _, anomaly in anomalies.iterrows():
                 alert_class = "alert-high" if anomaly['severity'] == 'High' else \
-                             "alert-medium" if anomaly['severity'] == 'Medium' else "alert-low"
+                              "alert-medium" if anomaly['severity'] == 'Medium' else "alert-low"
                 
                 st.markdown(f"""
                 <div class="metric-card {alert_class} alert-card">
@@ -420,8 +410,7 @@ class SmartBuildingRAG:
                 """, unsafe_allow_html=True)
         else:
             st.success("✅ No active anomalies detected. All systems are operating normally.")
-        
-        # Anomaly detection settings
+            
         with st.expander("⚙️ Anomaly Detection Settings"):
             sensitivity = st.slider("Detection Sensitivity", 0.1, 1.0, 0.5)
             threshold = st.slider("Alert Threshold", 0.1, 1.0, 0.7)
@@ -433,20 +422,11 @@ class SmartBuildingRAG:
 def main():
     """Main application entry point"""
     try:
-        # Initialize the application
         app = SmartBuildingRAG()
-        
-        # Run the main dashboard
         app.main_dashboard()
-        
-        # Auto-refresh every 30 seconds
-        time.sleep(30)
-        st.rerun()
-        
     except Exception as e:
         st.error(f"Application error: {str(e)}")
         st.info("Please check your configuration and try again.")
 
 if __name__ == "__main__":
     main()
-
