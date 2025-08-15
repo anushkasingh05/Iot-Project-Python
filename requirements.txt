@@ -6,4 +6,5 @@ python-dotenv
 openai
 chromadb
 sentence-transformers
+--extra-index-url https://download.pytorch.org/whl/cpu
 torch
